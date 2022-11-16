@@ -111,6 +111,7 @@ export default class LocalAudioTrack extends LocalTrack {
     }
 
     this.prevStats = stats;
+    return stats;
   };
 
   async getSenderStats(): Promise<AudioSenderStats | undefined> {
