@@ -153,15 +153,19 @@ export function computeVideoEncodings(
     return [videoEncoding];
   }
 
-  let presets: Array<VideoPreset> = [];
+ 
+  log.debug(`options?.screenShareSimulcastLayers ${options?.screenShareSimulcastLayers}`);
   if (isScreenShare) {
-    presets =
-      sortPresets(options?.screenShareSimulcastLayers) ??
-      defaultSimulcastLayers(isScreenShare, original);
-  } else {
-    presets =
-      sortPresets(options?.videoSimulcastLayers) ?? defaultSimulcastLayers(isScreenShare, original);
+    log.debug(`isScreenShare ${isScreenShare}`);
+       log.debug(`original[0] ${original.height}  ${original.width}  ${original.encoding.maxBitrate}  ${original.encoding.maxFramerate}`);
+    return encodingsFromPresets(width, height, [original]);
   }
+  let presets: Array<VideoPreset> = [];
+  presets =
+    sortPresets(options?.videoSimulcastLayers) ?? defaultSimulcastLayers(isScreenShare, original);
+
+  log.debug(`presets ${presets.length}`);
+  log.debug(`presets ${presets[0].height}  ${presets[0].width}  ${presets[0].encoding.maxBitrate}  ${presets[0].encoding.maxFramerate}`);
   let midPreset: VideoPreset | undefined;
   if (presets.length > 0) {
     const lowPreset = presets[0];
