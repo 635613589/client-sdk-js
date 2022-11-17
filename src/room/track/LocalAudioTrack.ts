@@ -87,9 +87,15 @@ export default class LocalAudioTrack extends LocalTrack {
     if (this.monitorInterval) {
       return;
     }
-    this.monitorInterval = setInterval(() => {
-      this.monitorSender();
-    }, monitorFrequency);
+    return new Promise((resolve, reject) => {
+      this.monitorInterval = setInterval(() => {
+        let stats = this.monitorSender();
+        resolve(stats);
+      }, monitorFrequency);
+    })
+    // this.monitorInterval = setInterval(() => {
+    //   this.monitorSender();
+    // }, monitorFrequency);
   }
 
   protected monitorSender = async () => {
