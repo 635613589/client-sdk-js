@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import { SignalClient } from '../api/SignalClient';
 import RTCEngine from '../room/RTCEngine';
 declare const mocks: {

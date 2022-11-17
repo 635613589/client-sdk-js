@@ -25,7 +25,7 @@ export default class LocalVideoTrack extends LocalTrack {
      */
     constructor(mediaTrack: MediaStreamTrack, constraints?: MediaTrackConstraints, userProvidedTrack?: boolean);
     get isSimulcast(): boolean;
-    startMonitor(signalClient: SignalClient): void;
+    startMonitor(signalClient: SignalClient): Promise<unknown> | undefined;
     stop(): void;
     mute(): Promise<LocalVideoTrack>;
     unmute(): Promise<LocalVideoTrack>;

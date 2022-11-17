@@ -17,7 +17,7 @@ export default class LocalAudioTrack extends LocalTrack {
     unmute(): Promise<LocalAudioTrack>;
     restartTrack(options?: AudioCaptureOptions): Promise<void>;
     protected restart(constraints?: MediaTrackConstraints): Promise<LocalTrack>;
-    startMonitor(): void;
+    startMonitor(): Promise<unknown> | undefined;
     protected monitorSender: () => Promise<AudioSenderStats | undefined>;
     getSenderStats(): Promise<AudioSenderStats | undefined>;
     checkForSilence(): Promise<void>;
